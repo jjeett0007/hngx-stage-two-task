@@ -199,13 +199,30 @@ export const ContentDetails = styled.div`
   }
 
   button {
-    width: 120px;
+    width: auto;
     height: 35px;
     border-radius: 7px;
     color: white;
     background-color: #be123c;
     border: none;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+
+    div{
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items:center ;
+      justify-content: center;
+    }
+
+    span {
+      font-size: 18px;
+      font-weight: 600;
+    }
 
     @media (max-width: 728px) {
       width: 100px;
@@ -292,19 +309,104 @@ export const MovieBanner = styled.div`
   } */
 
   div {
-    width: 100%;
+    margin-top: 5px;
+    width: 92%;
     height: 40px;
-    border: 1px solid white;
+    padding-left: 10px;
+    padding-right: 10px;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    div:first-child{
-        width: 60px;
-        border: 1px solid red;
+    div:first-child {
+      width: 60px;
+      border: 1px solid red;
     }
 
-    div:last-child{
-        width: 50px;
-        border: 1px solid green;
+    div:last-child {
+      width: 40px;
+      height: 40px;
+      padding: 0px;
+      border-radius: 50%;
+      background-color: rgba(243, 244, 246, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+`;
+
+export const MovieDetails = styled.div`
+  width: auto;
+  height: auto;
+  padding: 10px;
+  padding-bottom: 0px;
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: center;
+
+  h5, h4, p{
+    margin-top: -6px;
+  }
+
+  div {
+    width: 90%;
+    margin-top: -6px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    @media (max-width: 728px) {
+      width: 80%;
+    }
+
+    span {
+      color: black;
+      /* margin-left: 20px; */
+    }
+
+    div:first-child {
+      width: 200px;
+
+      @media (max-width: 728px) {
+        width: 140px;
+      }
+
+      div {
+        width: 35px;
+        height: 60%;
+        background-image: url("https://s3-alpha-sig.figma.com/img/a423/5182/5bf071206cd1f384cc337b8867ae5aeb?Expires=1695600000&Signature=GmjlYRtN7Bn0a000PlFfH7~PSPUqhjlmeVjeG78xahYPVsdYtx9OB4Xw~McOajU0VJdzWV~kOb9Y7BxuYGt9nLl4j3fa13J0CV-jFgkZYrbsnLqCsatzsp-GOBePlv11WtoU0Y-VyqcucOgQ4WtWOpm-CRHRxt6dyYhRTWnHDK6jTdwq450LeJJDrlGIXs7UR48IWEjn4CLtl-yFzrYzqgaEJFc4hhkYaRWHEHA5zq~9PMSRfatf1FMdVUmSY-f4dRF~XYj82h7PF5RCazgn8p-k6cF5zKaAZwg5mDRFcAa6L4dnBpVqub5ELdMya7wD4MgJe1KfHFUR-ipYPNEGEA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        @media (max-width: 728px) {
+          width: 80px;
+          height: 90%;
+        }
+      }
+    }
+
+    div:last-child {
+      margin-left: 10px;
+      width: 200px;
+
+      div {
+        width: 35px;
+        height: 60%;
+        background-image: url("https://s3-alpha-sig.figma.com/img/8e6d/4012/82ace228929a9068f3eb189a3ea549a7?Expires=1695600000&Signature=qF~QGIuW0LhKdlzuXcioKGCczJNvscvmmfw3pgAXSbQ52prxwI9-Xim4eWdhQiBWp9IJmdhPMWUEd6h1hTVX0MZMfjSzN7KGWIg~K6crB4ucKBB2kGenYomk~GvlnFGnNQeNR5cNJtpRx8ZP0PQCYmdhLkay5A5nZJyxnpXAggdswF0osy6Fjkt9YG81WFkdC0A~mRZEtFm5SfDi-yi-PryjCvHBFC-TwQwloT-~aPsEOEzQYsuiiCK9ub32hslNLXDrRNTQNT~fVbndRlX8bIIhhjPLQtzp~b7pFAiJdAat~0~U2nLFTMMCbpeOHUy-9W4hSYpoHwKVxwVyQG8xZw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        @media (max-width: 728px) {
+          width: 30px;
+          height: 90%;
+        }
+      }
     }
   }
 `;

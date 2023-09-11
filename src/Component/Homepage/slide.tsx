@@ -10,11 +10,13 @@ import {
   MovieArea,
   MovieBanner,
   MovieCard,
+  MovieDetails,
   MovieWrapper,
   SearchComp,
   SlideContent,
   SlideWrapper,
 } from "./style";
+import { AiFillPlayCircle, AiFillHeart } from "react-icons/ai";
 
 const Slide = () => {
   const [featured, setFeatured] = useState(true);
@@ -49,7 +51,12 @@ const Slide = () => {
                 international assassins' guild, and with a $14 million price tag
                 on his head, he is the target of hit men and women everywhere.
               </p>
-              <button>Watch trailer</button>
+              <button>
+                <div>
+                  <AiFillPlayCircle size={25} />
+                </div>
+                <span>Watch trailer</span>
+              </button>
             </ContentDetails>
           </SlideContent>
         </SlideWrapper>
@@ -67,10 +74,29 @@ const Slide = () => {
                 <MovieCard>
                   <MovieBanner>
                     <div>
-                        <div></div>
-                        <div></div>
+                      <div></div>
+                      <div>
+                        <AiFillHeart />
+                      </div>
                     </div>
                   </MovieBanner>
+                  <MovieDetails>
+                    <h5>USA, 2016 - Current</h5>
+                    <h4>Stranger Things</h4>
+
+                    <div>
+                      <div>
+                        <div></div>
+                        <span>10.0/100</span>
+                      </div>
+                      <div>
+                        <div></div>
+                        <span>97%</span>
+                      </div>
+                    </div>
+
+                    <p>Action, Adventure, Horror</p>
+                  </MovieDetails>
                 </MovieCard>
               </FeaturedNsearcMovei>
             </MovieArea>
