@@ -254,13 +254,57 @@ export const Featuredheader = styled.div`
 
 export const FeaturedNsearcMovei = styled.div`
   width: auto;
-  height: 10vh;
+  height: auto;
   padding: 10px;
   border: 1px solid blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 export const MovieCard = styled.div`
-  width: 250px;
+  width: 270px;
   height: 500px;
   border: 1px solid black;
+  margin: 30px;
+
+  @media (max-width: 728px) {
+    width: 300px;
+    margin: 10px;
+  }
+`;
+
+export const MovieBanner = styled.div`
+  width: auto;
+  height: 370px;
+  border: 1px solid blue;
+  background-image: url("https://s3-alpha-sig.figma.com/img/5789/e4a9/55bc9e1a21c68b2b31a33af82b284df6?Expires=1695600000&Signature=ZYva9mE2V1lavQ1AgRB~I0tVttb~Qw7g9Nu-Mt8TAiNlVPcLfZPLtIhkFGzrViuyAu7uKKvEt5U0QoeC4SbYPQJ4j-FJJQE8bvNvdMAy-~D1qdecxAPil0bjIROFTPBhVmIpxNmUt8c54fUO1poHzlQ0gBPsFnoZi9vLHRIiP2Yl19Zz4AcvHYywUPEPR515xPHjTmP9c3Zg89J8oHJAnuhZAO72t-7NdDiqsoatiwq-uqcDLt0TkWP1EHstLrNXK-UjmeZAKOW5xwizebIODoOu~V8Qz8AlAmnp0NOpBzSmOJ02Kvxi5-LccSDqZeY9Mip5OyhvO120mfi60JXevA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  /* img {
+    position: absolute;
+    width: 18%;
+    height: 100%;
+    z-index: -1;
+  } */
+
+  div {
+    width: 100%;
+    height: 40px;
+    border: 1px solid white;
+    display: flex;
+
+    div:first-child{
+        width: 60px;
+        border: 1px solid red;
+    }
+
+    div:last-child{
+        width: 50px;
+        border: 1px solid green;
+    }
+  }
 `;

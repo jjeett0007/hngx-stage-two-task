@@ -8,6 +8,7 @@ import {
   Logo,
   MainWrapper,
   MovieArea,
+  MovieBanner,
   MovieCard,
   MovieWrapper,
   SearchComp,
@@ -63,7 +64,14 @@ const Slide = () => {
                 <div>see more</div>
               </Featuredheader>
               <FeaturedNsearcMovei>
-                <MovieCard></MovieCard>
+                <MovieCard>
+                  <MovieBanner>
+                    <div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                  </MovieBanner>
+                </MovieCard>
               </FeaturedNsearcMovei>
             </MovieArea>
           </>
