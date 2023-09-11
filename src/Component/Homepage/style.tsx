@@ -6,7 +6,8 @@ export const MainWrapper = styled.div`
   height: 87vh;
 
   @media (max-width: 728px) {
-    height: 30vh;
+    height: 35vh;
+    border: 1px solid red;
   }
 `;
 
@@ -122,6 +123,7 @@ export const ContentDetails = styled.div`
 
   h1 {
     color: white;
+    font-size: 50px;
 
     @media (max-width: 728px) {
       margin: auto;
@@ -132,7 +134,6 @@ export const ContentDetails = styled.div`
   div {
     width: 100%;
     height: 30px;
-    border: 1px solid black;
     display: flex;
     align-items: center;
 
@@ -149,22 +150,20 @@ export const ContentDetails = styled.div`
       width: 200px;
 
       @media (max-width: 728px) {
-        width: 150px;
+        width: 140px;
       }
 
       div {
         width: 80px;
         height: 100%;
-        border: 1px solid yellow;
         background-image: url("https://s3-alpha-sig.figma.com/img/a423/5182/5bf071206cd1f384cc337b8867ae5aeb?Expires=1695600000&Signature=GmjlYRtN7Bn0a000PlFfH7~PSPUqhjlmeVjeG78xahYPVsdYtx9OB4Xw~McOajU0VJdzWV~kOb9Y7BxuYGt9nLl4j3fa13J0CV-jFgkZYrbsnLqCsatzsp-GOBePlv11WtoU0Y-VyqcucOgQ4WtWOpm-CRHRxt6dyYhRTWnHDK6jTdwq450LeJJDrlGIXs7UR48IWEjn4CLtl-yFzrYzqgaEJFc4hhkYaRWHEHA5zq~9PMSRfatf1FMdVUmSY-f4dRF~XYj82h7PF5RCazgn8p-k6cF5zKaAZwg5mDRFcAa6L4dnBpVqub5ELdMya7wD4MgJe1KfHFUR-ipYPNEGEA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
 
         @media (max-width: 728px) {
-          width: 60px;
+          width: 80px;
           height: 90%;
-          border: 1px solid black;
         }
       }
     }
@@ -176,11 +175,15 @@ export const ContentDetails = styled.div`
       div {
         width: 60px;
         height: 100%;
-        border: 1px solid red;
         background-image: url("https://s3-alpha-sig.figma.com/img/8e6d/4012/82ace228929a9068f3eb189a3ea549a7?Expires=1695600000&Signature=qF~QGIuW0LhKdlzuXcioKGCczJNvscvmmfw3pgAXSbQ52prxwI9-Xim4eWdhQiBWp9IJmdhPMWUEd6h1hTVX0MZMfjSzN7KGWIg~K6crB4ucKBB2kGenYomk~GvlnFGnNQeNR5cNJtpRx8ZP0PQCYmdhLkay5A5nZJyxnpXAggdswF0osy6Fjkt9YG81WFkdC0A~mRZEtFm5SfDi-yi-PryjCvHBFC-TwQwloT-~aPsEOEzQYsuiiCK9ub32hslNLXDrRNTQNT~fVbndRlX8bIIhhjPLQtzp~b7pFAiJdAat~0~U2nLFTMMCbpeOHUy-9W4hSYpoHwKVxwVyQG8xZw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
+
+        @media (max-width: 728px) {
+          width: 30px;
+          height: 90%;
+        }
       }
     }
   }
@@ -207,5 +210,43 @@ export const ContentDetails = styled.div`
       width: 100px;
       height: 30px;
     }
+  }
+`;
+
+export const MovieWrapper = styled.div`
+  width: auto;
+  height: auto;
+  padding: 40px;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const MovieArea = styled.div`
+  width: 95%;
+  height: auto;
+  border: 1px solid black;
+  padding: 10px;
+`;
+
+export const Featuredheader = styled.div`
+  width: auto;
+  height: 5vh;
+  border: 1px solid black;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h3{
+    font-weight: 600;
+    color: black;
+    line-height: 0px;
+  }
+
+  div{
+    font-weight: 600;
+    font-size: 16px;
   }
 `;

@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ContentDetails,
+  Featuredheader,
   HamburgerMenu,
   HeaderComp,
   Logo,
   MainWrapper,
+  MovieArea,
+  MovieWrapper,
   SearchComp,
   SlideContent,
   SlideWrapper,
 } from "./style";
 
 const Slide = () => {
+  const [featured, setFeatured] = useState(true);
+  const [searchResult, setSearchResult] = useState(false);
   return (
     <>
       <MainWrapper>
@@ -46,6 +51,30 @@ const Slide = () => {
           </SlideContent>
         </SlideWrapper>
       </MainWrapper>
+
+      <MovieWrapper>
+        {featured && (
+          <>
+            <MovieArea>
+              <Featuredheader>
+                <h3>Featured Movie</h3>
+                <div>see more</div>
+              </Featuredheader>
+            </MovieArea>
+          </>
+        )}
+
+        {searchResult && (
+          <>
+            <MovieArea>
+              <Featuredheader>
+                <h3>Searched Movie</h3>
+                <div>see more</div>
+              </Featuredheader>
+            </MovieArea>
+          </>
+        )}
+      </MovieWrapper>
     </>
   );
 };
