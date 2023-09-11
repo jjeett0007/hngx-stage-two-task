@@ -205,6 +205,7 @@ export const ContentDetails = styled.div`
     color: white;
     background-color: #be123c;
     border: none;
+    display: flex;
 
     @media (max-width: 728px) {
       width: 100px;
@@ -239,14 +240,27 @@ export const Featuredheader = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  h3{
+  h3 {
     font-weight: 600;
     color: black;
     line-height: 0px;
   }
 
-  div{
+  div {
     font-weight: 600;
     font-size: 16px;
   }
+`;
+
+export const FeaturedNsearcMovei = styled.div`
+  width: auto;
+  height: 10vh;
+  padding: 10px;
+  border: 1px solid blue;
+`;
+
+export const MovieCard = styled.div`
+  width: 250px;
+  height: 500px;
+  border: 1px solid black;
 `;

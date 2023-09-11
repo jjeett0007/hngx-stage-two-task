@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import {
   ContentDetails,
   Featuredheader,
+  FeaturedNsearcMovei,
   HamburgerMenu,
   HeaderComp,
   Logo,
   MainWrapper,
   MovieArea,
+  MovieCard,
   MovieWrapper,
   SearchComp,
   SlideContent,
@@ -60,6 +62,9 @@ const Slide = () => {
                 <h3>Featured Movie</h3>
                 <div>see more</div>
               </Featuredheader>
+              <FeaturedNsearcMovei>
+                <MovieCard></MovieCard>
+              </FeaturedNsearcMovei>
             </MovieArea>
           </>
         )}
