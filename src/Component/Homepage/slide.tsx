@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ContentDetails,
   Featuredheader,
@@ -16,11 +16,54 @@ import {
   SlideContent,
   SlideWrapper,
 } from "./style";
-import { AiFillPlayCircle, AiFillHeart } from "react-icons/ai";
+import {
+  AiFillPlayCircle,
+  AiFillHeart,
+  AiOutlineMenu,
+  AiOutlineRight,
+} from "react-icons/ai";
+import axios from "axios";
+
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+  vote_average: number;
+  // Add other properties you need here
+}
 
 const Slide = () => {
   const [featured, setFeatured] = useState(true);
   const [searchResult, setSearchResult] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [featuredMovies, setFeaturedMovies] = useState<Movie[]>([]);
+
+  const apiKey = "3a62d04255c878db1daaa9aa1c669ebe";
+  const authToken =
+    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTYyZDA0MjU1Yzg3OGRiMWRhYWE5YWExYzY2OWViZSIsInN1YiI6IjY0Yjk1MGUwNmFhOGUwMDBiMGIwYTEyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j5GXCaGvAlGNzLwvf2ROT_p8rUZdcm5v7XEDjZu8NlE";
+
+  useEffect(() => {
+    const apiUrl = `https://api.themoviedb.org/3/movie/popular`;
+
+    axios
+      .get(apiUrl, {
+        headers: {
+          Accept: "application/json",
+          Authorization: authToken,
+        },
+      })
+      .then((response) => {
+        setFeaturedMovies(response.data.results);
+        setIsLoading(false);
+        console.log(response.data.results);
+      })
+      .catch((error) => {
+        console.log("error fetching movies", error);
+        setIsLoading(false);
+      });
+  }, []);
+
   return (
     <>
       <MainWrapper>
@@ -30,7 +73,9 @@ const Slide = () => {
             <SearchComp></SearchComp>
             <HamburgerMenu>
               <p>Sign in</p>
-              <div></div>
+              <div>
+                <AiOutlineMenu size={30} color="white" />
+              </div>
             </HamburgerMenu>
           </HeaderComp>
           <SlideContent>
@@ -68,36 +113,52 @@ const Slide = () => {
             <MovieArea>
               <Featuredheader>
                 <h3>Featured Movie</h3>
-                <div>see more</div>
+                <div>
+                  <p>
+                    see more <AiOutlineRight size={25} />{" "}
+                  </p>
+                </div>
               </Featuredheader>
               <FeaturedNsearcMovei>
-                <MovieCard>
-                  <MovieBanner>
-                    <div>
-                      <div></div>
-                      <div>
-                        <AiFillHeart />
-                      </div>
-                    </div>
-                  </MovieBanner>
-                  <MovieDetails>
-                    <h5>USA, 2016 - Current</h5>
-                    <h4>Stranger Things</h4>
+                <>
+                  {isLoading ? (
+                    <>
+                      <p>Searching...</p>
+                    </>
+                  ) : (
+                    <>
+                      {featuredMovies.map((index) => (
+                        <MovieCard key={index.id}>
+                          <MovieBanner customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}>
+                            <div>
+                              <div></div>
+                              <div>
+                                <AiFillHeart size={20} color="white" />
+                              </div>
+                            </div>
+                          </MovieBanner>
+                          <MovieDetails>
+                            <h5>USA, {index.release_date}</h5>
+                            <h4>{index.title}</h4>
 
-                    <div>
-                      <div>
-                        <div></div>
-                        <span>10.0/100</span>
-                      </div>
-                      <div>
-                        <div></div>
-                        <span>97%</span>
-                      </div>
-                    </div>
+                            <div>
+                              <div>
+                                <div></div>
+                                <span>{index.vote_average}/10</span>
+                              </div>
+                              <div>
+                                <div></div>
+                                <span>97%</span>
+                              </div>
+                            </div>
 
-                    <p>Action, Adventure, Horror</p>
-                  </MovieDetails>
-                </MovieCard>
+                            <p>Action, Adventure, Horror</p>
+                          </MovieDetails>
+                        </MovieCard>
+                      ))}
+                    </>
+                  )}
+                </>
               </FeaturedNsearcMovei>
             </MovieArea>
           </>

@@ -14,7 +14,6 @@ export const MainWrapper = styled.div`
 export const SlideWrapper = styled.div`
   width: 100%;
   height: 100%;
-  background-image: url("https://s3-alpha-sig.figma.com/img/154e/382f/b7e8be84d7248b8b9812172cad1cd0c9?Expires=1695600000&Signature=OsNLaMa8CnSNnQeUuaSqQc4ItYP-nbUj0fcZVpScVICd8NzZdIEz80MJBNhEju2IQOUMxTFuDw4FavRj8rGqkBK6uLeq0vJG~Y-EPhP~LInckDsnzuQ5Y2BdrMTWOqkPaFdDAPmQXSLpWteihqFaB2f2VQGC6Za5gHu7t3hq62C0X21qB-8H7osPvHdFmh0c-B881mmDx6JQCfpUQRzNHAjMxdvS~LrFQthLfxQb29n8J4z25KNx4cSOzRDCMXJaP0gpPcPRXMYrFdz-nbt~yFJLM37b1YLKasT2gd5K2x6nxGQWVPlwAafWCDzo3TzVihPSl0FiwjfkbBREka5jUQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
   background-position: center;
   background-size: cover;
   background-repeat: repeat;
@@ -50,7 +49,7 @@ export const Logo = styled.div`
 
 export const SearchComp = styled.div`
   width: 500px;
-  height: 30px;
+  height: 40px;
   border: 2px solid white;
   border-radius: 10px;
 
@@ -79,6 +78,9 @@ export const HamburgerMenu = styled.div`
     height: 50px;
     border-radius: 50%;
     background-color: #be123c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   @media (max-width: 728px) {
@@ -99,13 +101,20 @@ export const HamburgerMenu = styled.div`
 `;
 
 export const SlideContent = styled.div`
-  width: auto;
+  width: 100vw;
   height: 60vh;
   margin-top: 20px;
   padding: 20px;
   padding-left: 100px;
   display: flex;
   align-items: center;
+  background-image: url("https://s3-alpha-sig.figma.com/img/154e/382f/b7e8be84d7248b8b9812172cad1cd0c9?Expires=1695600000&Signature=OsNLaMa8CnSNnQeUuaSqQc4ItYP-nbUj0fcZVpScVICd8NzZdIEz80MJBNhEju2IQOUMxTFuDw4FavRj8rGqkBK6uLeq0vJG~Y-EPhP~LInckDsnzuQ5Y2BdrMTWOqkPaFdDAPmQXSLpWteihqFaB2f2VQGC6Za5gHu7t3hq62C0X21qB-8H7osPvHdFmh0c-B881mmDx6JQCfpUQRzNHAjMxdvS~LrFQthLfxQb29n8J4z25KNx4cSOzRDCMXJaP0gpPcPRXMYrFdz-nbt~yFJLM37b1YLKasT2gd5K2x6nxGQWVPlwAafWCDzo3TzVihPSl0FiwjfkbBREka5jUQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat;
+  position: absolute;
+  top: 0;
+  z-index: -1000000;
 
   @media (max-width: 728px) {
     padding: 2px;
@@ -200,7 +209,7 @@ export const ContentDetails = styled.div`
 
   button {
     width: auto;
-    height: 35px;
+    height: 45px;
     border-radius: 7px;
     color: white;
     background-color: #be123c;
@@ -211,11 +220,11 @@ export const ContentDetails = styled.div`
     gap: 10px;
     padding: 10px;
 
-    div{
+    div {
       width: 20px;
       height: 20px;
       display: flex;
-      align-items:center ;
+      align-items: center;
       justify-content: center;
     }
 
@@ -235,7 +244,6 @@ export const MovieWrapper = styled.div`
   width: auto;
   height: auto;
   padding: 40px;
-  border: 2px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,7 +252,6 @@ export const MovieWrapper = styled.div`
 export const MovieArea = styled.div`
   width: 95%;
   height: auto;
-  border: 1px solid black;
   padding: 10px;
 `;
 
@@ -265,7 +272,17 @@ export const Featuredheader = styled.div`
 
   div {
     font-weight: 600;
-    font-size: 16px;
+    color: #be123c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 `;
 
@@ -273,7 +290,6 @@ export const FeaturedNsearcMovei = styled.div`
   width: auto;
   height: auto;
   padding: 10px;
-  border: 1px solid blue;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -292,11 +308,17 @@ export const MovieCard = styled.div`
   }
 `;
 
-export const MovieBanner = styled.div`
+interface PropsArgs {
+  customBg?: any;
+}
+
+export const MovieBanner = styled.div<PropsArgs>`
   width: auto;
   height: 370px;
-  border: 1px solid blue;
-  background-image: url("https://s3-alpha-sig.figma.com/img/5789/e4a9/55bc9e1a21c68b2b31a33af82b284df6?Expires=1695600000&Signature=ZYva9mE2V1lavQ1AgRB~I0tVttb~Qw7g9Nu-Mt8TAiNlVPcLfZPLtIhkFGzrViuyAu7uKKvEt5U0QoeC4SbYPQJ4j-FJJQE8bvNvdMAy-~D1qdecxAPil0bjIROFTPBhVmIpxNmUt8c54fUO1poHzlQ0gBPsFnoZi9vLHRIiP2Yl19Zz4AcvHYywUPEPR515xPHjTmP9c3Zg89J8oHJAnuhZAO72t-7NdDiqsoatiwq-uqcDLt0TkWP1EHstLrNXK-UjmeZAKOW5xwizebIODoOu~V8Qz8AlAmnp0NOpBzSmOJ02Kvxi5-LccSDqZeY9Mip5OyhvO120mfi60JXevA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+  background-image: ${({ customBg }) =>
+    customBg
+      ? `url(${customBg})`
+      : 'url("https://s3-alpha-sig.figma.com/img/5789/e4a9/55bc9e1a21c68b2b31a33af82b284df6?Expires=1695600000&Signature=ZYva9mE2V1lavQ1AgRB~I0tVttb~Qw7g9Nu-Mt8TAiNlVPcLfZPLtIhkFGzrViuyAu7uKKvEt5U0QoeC4SbYPQJ4j-FJJQE8bvNvdMAy-~D1qdecxAPil0bjIROFTPBhVmIpxNmUt8c54fUO1poHzlQ0gBPsFnoZi9vLHRIiP2Yl19Zz4AcvHYywUPEPR515xPHjTmP9c3Zg89J8oHJAnuhZAO72t-7NdDiqsoatiwq-uqcDLt0TkWP1EHstLrNXK-UjmeZAKOW5xwizebIODoOu~V8Qz8AlAmnp0NOpBzSmOJ02Kvxi5-LccSDqZeY9Mip5OyhvO120mfi60JXevA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")'};
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -309,7 +331,7 @@ export const MovieBanner = styled.div`
   } */
 
   div {
-    margin-top: 5px;
+    margin-top: 0px;
     width: 92%;
     height: 40px;
     padding-left: 10px;
@@ -320,7 +342,6 @@ export const MovieBanner = styled.div`
 
     div:first-child {
       width: 60px;
-      border: 1px solid red;
     }
 
     div:last-child {
@@ -332,6 +353,7 @@ export const MovieBanner = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-top: 15px;
     }
   }
 `;
@@ -341,14 +363,23 @@ export const MovieDetails = styled.div`
   height: auto;
   padding: 10px;
   padding-bottom: 0px;
-  border: 2px solid red;
   display: flex;
   flex-direction: column;
   align-items: baseline;
   justify-content: center;
 
-  h5, h4, p{
+  h5,
+  h4,
+  p {
     margin-top: -6px;
+    line-height: 13px;
+  }
+
+  h5,
+  p {
+    color: #9ca3af;
+    font-size: 18px;
+    font-weight: 600;
   }
 
   div {
@@ -358,6 +389,8 @@ export const MovieDetails = styled.div`
     display: flex;
     align-items: center;
     gap: 20px;
+    margin-top: -2px;
+    margin-bottom: 4px;
 
     @media (max-width: 728px) {
       width: 80%;
@@ -370,6 +403,9 @@ export const MovieDetails = styled.div`
 
     div:first-child {
       width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       @media (max-width: 728px) {
         width: 140px;
@@ -382,6 +418,7 @@ export const MovieDetails = styled.div`
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
+        margin: auto;
 
         @media (max-width: 728px) {
           width: 80px;
@@ -401,6 +438,7 @@ export const MovieDetails = styled.div`
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
+        margin: auto;
 
         @media (max-width: 728px) {
           width: 30px;
