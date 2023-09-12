@@ -193,7 +193,7 @@ const Slide = () => {
         },
       })
       .then((response) => {
-        const data = response.data.results.slice(0, 5);
+        const data = response.data.results.slice(0, 20);
         setTopRatedMovies(data);
       })
       .catch((error) => {
