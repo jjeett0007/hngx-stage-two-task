@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import Skeleton from "@mui/material/Skeleton";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   ContentDetails,
   Featuredheader,
@@ -79,7 +80,7 @@ const Slide = () => {
     if (!isLoading) {
       setTimeout(() => {
         showDisplay(true);
-      });
+      }, 7000);
     }
   }, [isLoading]);
 
@@ -301,45 +302,77 @@ const Slide = () => {
                 <>
                   {isLoading ? (
                     <>
-                      <p>Searching...</p>
+                      <MovieCard>
+                        <MovieBanner customBg="">
+                          <Skeleton height={400} />
+                          <Skeleton />
+                          <Skeleton />
+                          <Skeleton />
+                        </MovieBanner>
+                      </MovieCard>
+                      <MovieCard>
+                        <MovieBanner customBg="">
+                          <Skeleton height={400} />
+                          <Skeleton />
+                          <Skeleton />
+                          <Skeleton />
+                        </MovieBanner>
+                      </MovieCard>
+                      <MovieCard>
+                        <MovieBanner customBg="">
+                          <Skeleton height={400} />
+                          <Skeleton />
+                          <Skeleton />
+                          <Skeleton />
+                        </MovieBanner>
+                      </MovieCard>
+                      <MovieCard>
+                        <MovieBanner customBg="">
+                          <Skeleton height={400} />
+                          <Skeleton />
+                          <Skeleton />
+                          <Skeleton />
+                        </MovieBanner>
+                      </MovieCard>
                     </>
                   ) : (
                     <>
-                      {display && (
+                      {featuredMovies.map((index) => (
+                        <MovieCard id={index.imdb_id} key={index.imdb_id}>
+                          <MovieBanner
+                            customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
+                          >
+                            <div>
+                              <div></div>
+                              <div>
+                                <AiFillHeart size={20} color="white" />
+                              </div>
+                            </div>
+                          </MovieBanner>
+                          <MovieDetails>
+                            <h5>USA, {index.release_date}</h5>
+                            <h4>{index.title}</h4>
+
+                            <div>
+                              <div>
+                                <div></div>
+                                <span>{index.vote_average}/10</span>
+                              </div>
+                              <div>
+                                <div></div>
+                                <span>97%</span>
+                              </div>
+                            </div>
+
+                            <p>Action, Adventure, Horror</p>
+                          </MovieDetails>
+                        </MovieCard>
+                      ))}
+                      {/* {display && (
                         <>
-                          {featuredMovies.map((index) => (
-                            <MovieCard id={index.imdb_id} key={index.imdb_id}>
-                              <MovieBanner
-                                customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
-                              >
-                                <div>
-                                  <div></div>
-                                  <div>
-                                    <AiFillHeart size={20} color="white" />
-                                  </div>
-                                </div>
-                              </MovieBanner>
-                              <MovieDetails>
-                                <h5>USA, {index.release_date}</h5>
-                                <h4>{index.title}</h4>
-
-                                <div>
-                                  <div>
-                                    <div></div>
-                                    <span>{index.vote_average}/10</span>
-                                  </div>
-                                  <div>
-                                    <div></div>
-                                    <span>97%</span>
-                                  </div>
-                                </div>
-
-                                <p>Action, Adventure, Horror</p>
-                              </MovieDetails>
-                            </MovieCard>
-                          ))}
+                          
                         </>
-                      )}
+                      )} */}
                     </>
                   )}
                 </>
@@ -361,17 +394,35 @@ const Slide = () => {
                     <>
                       <MovieCard>
                         <MovieBanner customBg="">
-                          {/* <Skeleton
-                            variant="rectangular"
-                            width={210}
-                            height={118}
-                          /> */}
+                          <Skeleton height={400} />
+                          <Skeleton />
+                          <Skeleton />
+                          <Skeleton />
                         </MovieBanner>
-                        <MovieDetails>
-                          {/* <Skeleton />
-                          <Skeleton animation="wave" />
-                          <Skeleton animation={false} /> */}
-                        </MovieDetails>
+                      </MovieCard>
+                      <MovieCard>
+                        <MovieBanner customBg="">
+                          <Skeleton height={400} />
+                          <Skeleton />
+                          <Skeleton />
+                          <Skeleton />
+                        </MovieBanner>
+                      </MovieCard>
+                      <MovieCard>
+                        <MovieBanner customBg="">
+                          <Skeleton height={400} />
+                          <Skeleton />
+                          <Skeleton />
+                          <Skeleton />
+                        </MovieBanner>
+                      </MovieCard>
+                      <MovieCard>
+                        <MovieBanner customBg="">
+                          <Skeleton height={400} />
+                          <Skeleton />
+                          <Skeleton />
+                          <Skeleton />
+                        </MovieBanner>
                       </MovieCard>
                     </>
                   ) : (
