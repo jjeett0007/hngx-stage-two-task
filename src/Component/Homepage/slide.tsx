@@ -26,6 +26,7 @@ import {
 import axios from "axios";
 
 interface Movie {
+  imdb_id: string;
   id: number;
   title: string;
   poster_path: string;
@@ -236,7 +237,7 @@ const Slide = () => {
                   ) : (
                     <>
                       {featuredMovies.map((index) => (
-                        <MovieCard key={index.id}>
+                        <MovieCard id={index.imdb_id} key={index.imdb_id}>
                           <MovieBanner
                             customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
                           >
