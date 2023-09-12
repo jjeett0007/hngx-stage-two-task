@@ -47,30 +47,41 @@ const Slide = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [display, showDisplay] = useState(false);
 
   const authToken =
     "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTYyZDA0MjU1Yzg3OGRiMWRhYWE5YWExYzY2OWViZSIsInN1YiI6IjY0Yjk1MGUwNmFhOGUwMDBiMGIwYTEyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j5GXCaGvAlGNzLwvf2ROT_p8rUZdcm5v7XEDjZu8NlE";
 
   useEffect(() => {
-    const apiUrl = `https://api.themoviedb.org/3/movie/popular`;
+    setTimeout(() => {
+      const apiUrl = `https://api.themoviedb.org/3/movie/popular`;
 
-    axios
-      .get(apiUrl, {
-        headers: {
-          Accept: "application/json",
-          Authorization: authToken,
-        },
-      })
-      .then((response) => {
-        setFeaturedMovies(response.data.results);
-        setIsLoading(false);
-        console.log(response.data.results);
-      })
-      .catch((error) => {
-        console.log("error fetching movies", error);
-        setIsLoading(false);
-      });
+      axios
+        .get(apiUrl, {
+          headers: {
+            Accept: "application/json",
+            Authorization: authToken,
+          },
+        })
+        .then((response) => {
+          setFeaturedMovies(response.data.results);
+          setIsLoading(false);
+          console.log(response.data.results);
+        })
+        .catch((error) => {
+          console.log("error fetching movies", error);
+          setIsLoading(false);
+        });
+    }, 5000);
   }, []);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setTimeout(() => {
+        showDisplay(true);
+      });
+    }
+  }, [isLoading]);
 
   const handleSearch = () => {
     if (searchQuery.trim() === "") {
@@ -81,23 +92,25 @@ const Slide = () => {
     setSearchResult(true);
     setIsLoading(true);
 
-    const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${searchQuery}`;
+    setTimeout(() => {
+      const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${searchQuery}`;
 
-    axios
-      .get(searchUrl, {
-        headers: {
-          Accept: "application/json",
-          Authorization: authToken,
-        },
-      })
-      .then((response) => {
-        setsearchedMovies(response.data.results);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log("error fetching movies", error);
-        setIsLoading(false);
-      });
+      axios
+        .get(searchUrl, {
+          headers: {
+            Accept: "application/json",
+            Authorization: authToken,
+          },
+        })
+        .then((response) => {
+          setsearchedMovies(response.data.results);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.log("error fetching movies", error);
+          setIsLoading(false);
+        });
+    }, 5000);
   };
 
   const fetchIMDbID = async (movieID: number) => {
@@ -292,37 +305,41 @@ const Slide = () => {
                     </>
                   ) : (
                     <>
-                      {featuredMovies.map((index) => (
-                        <MovieCard id={index.imdb_id} key={index.imdb_id}>
-                          <MovieBanner
-                            customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
-                          >
-                            <div>
-                              <div></div>
-                              <div>
-                                <AiFillHeart size={20} color="white" />
-                              </div>
-                            </div>
-                          </MovieBanner>
-                          <MovieDetails>
-                            <h5>USA, {index.release_date}</h5>
-                            <h4>{index.title}</h4>
+                      {display && (
+                        <>
+                          {featuredMovies.map((index) => (
+                            <MovieCard id={index.imdb_id} key={index.imdb_id}>
+                              <MovieBanner
+                                customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
+                              >
+                                <div>
+                                  <div></div>
+                                  <div>
+                                    <AiFillHeart size={20} color="white" />
+                                  </div>
+                                </div>
+                              </MovieBanner>
+                              <MovieDetails>
+                                <h5>USA, {index.release_date}</h5>
+                                <h4>{index.title}</h4>
 
-                            <div>
-                              <div>
-                                <div></div>
-                                <span>{index.vote_average}/10</span>
-                              </div>
-                              <div>
-                                <div></div>
-                                <span>97%</span>
-                              </div>
-                            </div>
+                                <div>
+                                  <div>
+                                    <div></div>
+                                    <span>{index.vote_average}/10</span>
+                                  </div>
+                                  <div>
+                                    <div></div>
+                                    <span>97%</span>
+                                  </div>
+                                </div>
 
-                            <p>Action, Adventure, Horror</p>
-                          </MovieDetails>
-                        </MovieCard>
-                      ))}
+                                <p>Action, Adventure, Horror</p>
+                              </MovieDetails>
+                            </MovieCard>
+                          ))}
+                        </>
+                      )}
                     </>
                   )}
                 </>
@@ -359,43 +376,51 @@ const Slide = () => {
                     </>
                   ) : (
                     <>
-                      {searchedMovies.length === 0 ? (
-                        <p>No result</p>
-                      ) : (
+                      {display && (
                         <>
-                          {searchedMovies.map((index) => (
-                            <MovieCard id={index.imdb_id} key={index.imdb_id}>
-                              <MovieBanner
-                                customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
-                              >
-                                <div>
-                                  <div></div>
-                                  <div>
-                                    <AiFillHeart size={20} color="white" />
-                                  </div>
-                                </div>
-                              </MovieBanner>
-                              <MovieDetails>
-                                <h5>{index.release_date}</h5>
-                                <h4>{index.title}</h4>
+                          {searchedMovies.length === 0 ? (
+                            <p>No result</p>
+                          ) : (
+                            <>
+                              {searchedMovies.map((index) => (
+                                <MovieCard
+                                  id={index.imdb_id}
+                                  key={index.imdb_id}
+                                >
+                                  <MovieBanner
+                                    customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
+                                  >
+                                    <div>
+                                      <div></div>
+                                      <div>
+                                        <AiFillHeart size={20} color="white" />
+                                      </div>
+                                    </div>
+                                  </MovieBanner>
+                                  <MovieDetails>
+                                    <h5>{index.release_date}</h5>
+                                    <h4>{index.title}</h4>
 
-                                <div>
-                                  <div>
-                                    <div></div>
-                                    <span>{index.vote_average}/10</span>
-                                  </div>
-                                  <div>
-                                    <div></div>
-                                    <span>97%</span>
-                                  </div>
-                                </div>
+                                    <div>
+                                      <div>
+                                        <div></div>
+                                        <span>{index.vote_average}/10</span>
+                                      </div>
+                                      <div>
+                                        <div></div>
+                                        <span>97%</span>
+                                      </div>
+                                    </div>
 
-                                <p>Action, Adventure, Horror</p>
-                              </MovieDetails>
-                            </MovieCard>
-                          ))}
+                                    <p>Action, Adventure, Horror</p>
+                                  </MovieDetails>
+                                </MovieCard>
+                              ))}
+                            </>
+                          )}
                         </>
                       )}
+
                       {/* {searchedMovies.map((index) => (
                         <MovieCard id={index.imdb_id} key={index.imdb_id}>
                           <MovieBanner
