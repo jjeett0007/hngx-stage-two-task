@@ -30,7 +30,8 @@ interface Movie {
   poster_path: string;
   release_date: string;
   vote_average: number;
-  // Add other properties you need here
+  overview: string;
+  backdrop_path: string;
 }
 
 const Slide = () => {
@@ -38,6 +39,18 @@ const Slide = () => {
   const [searchResult, setSearchResult] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [featuredMovies, setFeaturedMovies] = useState<Movie[]>([]);
+  const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
+  const slide = [
+    {
+      id: 1,
+      title: "John Wick",
+      rating: 8,
+      describe:
+        "John Wick is on the run after killing a member of the international assassins guild and with a 14million price tag on his head, he is the target of the hit men and women everywhere.",
+    },
+  ];
 
   const apiKey = "3a62d04255c878db1daaa9aa1c669ebe";
   const authToken =
@@ -64,6 +77,39 @@ const Slide = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const apiUrls = `https://api.themoviedb.org/3/movie/top_rated`;
+
+    axios
+      .get(apiUrls, {
+        headers: {
+          Accept: "applicatioj/json",
+          Authorization: authToken,
+        },
+      })
+      .then((response) => {
+        const data = response.data.results.slice(0, 5);
+        setTopRatedMovies(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching top-rated movies:", error);
+      });
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlideIndex(
+      (prevIndex) => (prevIndex + 1) % topRatedMovies.length
+    );
+  };
+
+  useEffect(() => {
+    // Set up a timer to advance the slide every 6 seconds
+    const slideTimer = setInterval(nextSlide, 1000);
+
+    // Clear the timer when the component unmounts
+    return () => clearInterval(slideTimer);
+  }, [currentSlideIndex]);
+
   return (
     <>
       <MainWrapper>
@@ -78,32 +124,43 @@ const Slide = () => {
               </div>
             </HamburgerMenu>
           </HeaderComp>
-          <SlideContent>
-            <ContentDetails>
-              <h1>John Wick 3</h1>
-              <div>
-                <div>
-                  <div></div>
-                  <span>10.0/100</span>
-                </div>
-                <div>
-                  <div></div>
-                  <span>97%</span>
-                </div>
-              </div>
-              <p>
-                John Wick is on the run after killing a member of the
-                international assassins' guild, and with a $14 million price tag
-                on his head, he is the target of hit men and women everywhere.
-              </p>
-              <button>
-                <div>
-                  <AiFillPlayCircle size={25} />
-                </div>
-                <span>Watch trailer</span>
-              </button>
-            </ContentDetails>
-          </SlideContent>
+          {topRatedMovies.map((rated, index) => {
+            return (
+              <>
+                <SlideContent
+                  customBg={`https://image.tmdb.org/t/p/original/${rated.backdrop_path}`}
+                  key={rated.id}
+                  style={{
+                    transform: `translateX(${
+                      (index - currentSlideIndex) * 100
+                    }%)`,
+                    transition: "transform 1s ease-in-out",
+                  }}
+                >
+                  <ContentDetails>
+                    <h1>{rated.title}</h1>
+                    <div>
+                      <div>
+                        <div></div>
+                        <span>{rated.vote_average}/100</span>
+                      </div>
+                      <div>
+                        <div></div>
+                        <span>97%</span>
+                      </div>
+                    </div>
+                    <p>{rated.overview}</p>
+                    <button>
+                      <div>
+                        <AiFillPlayCircle size={25} />
+                      </div>
+                      <span>Watch trailer</span>
+                    </button>
+                  </ContentDetails>
+                </SlideContent>
+              </>
+            );
+          })}
         </SlideWrapper>
       </MainWrapper>
 
@@ -129,7 +186,9 @@ const Slide = () => {
                     <>
                       {featuredMovies.map((index) => (
                         <MovieCard key={index.id}>
-                          <MovieBanner customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}>
+                          <MovieBanner
+                            customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
+                          >
                             <div>
                               <div></div>
                               <div>

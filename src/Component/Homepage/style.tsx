@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import LogoImage from "../../asset/movie.png";
 
+interface PropsArgs {
+  customBg?: any;
+}
+
 export const MainWrapper = styled.div`
   width: auto;
   height: 87vh;
@@ -100,20 +104,24 @@ export const HamburgerMenu = styled.div`
   }
 `;
 
-export const SlideContent = styled.div`
+export const SlideContent = styled.div<PropsArgs>`
   width: 100vw;
-  height: 60vh;
+  height: 80vh;
   margin-top: 20px;
   padding: 20px;
   padding-left: 100px;
   display: flex;
   align-items: center;
-  background-image: url("https://s3-alpha-sig.figma.com/img/154e/382f/b7e8be84d7248b8b9812172cad1cd0c9?Expires=1695600000&Signature=OsNLaMa8CnSNnQeUuaSqQc4ItYP-nbUj0fcZVpScVICd8NzZdIEz80MJBNhEju2IQOUMxTFuDw4FavRj8rGqkBK6uLeq0vJG~Y-EPhP~LInckDsnzuQ5Y2BdrMTWOqkPaFdDAPmQXSLpWteihqFaB2f2VQGC6Za5gHu7t3hq62C0X21qB-8H7osPvHdFmh0c-B881mmDx6JQCfpUQRzNHAjMxdvS~LrFQthLfxQb29n8J4z25KNx4cSOzRDCMXJaP0gpPcPRXMYrFdz-nbt~yFJLM37b1YLKasT2gd5K2x6nxGQWVPlwAafWCDzo3TzVihPSl0FiwjfkbBREka5jUQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+  background-image: ${({ customBg }) =>
+    customBg
+      ? `url(${customBg})`
+      : 'url("https://s3-alpha-sig.figma.com/img/154e/382f/b7e8be84d7248b8b9812172cad1cd0c9?Expires=1695600000&Signature=OsNLaMa8CnSNnQeUuaSqQc4ItYP-nbUj0fcZVpScVICd8NzZdIEz80MJBNhEju2IQOUMxTFuDw4FavRj8rGqkBK6uLeq0vJG~Y-EPhP~LInckDsnzuQ5Y2BdrMTWOqkPaFdDAPmQXSLpWteihqFaB2f2VQGC6Za5gHu7t3hq62C0X21qB-8H7osPvHdFmh0c-B881mmDx6JQCfpUQRzNHAjMxdvS~LrFQthLfxQb29n8J4z25KNx4cSOzRDCMXJaP0gpPcPRXMYrFdz-nbt~yFJLM37b1YLKasT2gd5K2x6nxGQWVPlwAafWCDzo3TzVihPSl0FiwjfkbBREka5jUQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")'};
   background-position: center;
   background-size: cover;
   background-repeat: repeat;
   position: absolute;
-  top: 0;
+  top: -21px;
+  margin-top: 20px;
   z-index: -1000000;
 
   @media (max-width: 728px) {
@@ -307,10 +315,6 @@ export const MovieCard = styled.div`
     margin: 10px;
   }
 `;
-
-interface PropsArgs {
-  customBg?: any;
-}
 
 export const MovieBanner = styled.div<PropsArgs>`
   width: auto;
