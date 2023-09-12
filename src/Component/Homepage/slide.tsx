@@ -15,6 +15,7 @@ import {
   SearchComp,
   SlideContent,
   SlideWrapper,
+  SlideWrappper,
 } from "./style";
 import {
   AiFillPlayCircle,
@@ -96,19 +97,17 @@ const Slide = () => {
       });
   }, []);
 
-  const nextSlide = () => {
-    setCurrentSlideIndex(
-      (prevIndex) => (prevIndex + 1) % topRatedMovies.length
-    );
-  };
-
   useEffect(() => {
     // Set up a timer to advance the slide every 6 seconds
-    const slideTimer = setInterval(nextSlide, 1000);
+    const slideTimer = setInterval(() => {
+      setCurrentSlideIndex(
+        (prevIndex) => (prevIndex + 1) % topRatedMovies.length
+      );
+    }, 6000);
 
     // Clear the timer when the component unmounts
     return () => clearInterval(slideTimer);
-  }, [currentSlideIndex]);
+  }, [currentSlideIndex, topRatedMovies]);
 
   return (
     <>
@@ -134,7 +133,7 @@ const Slide = () => {
                     transform: `translateX(${
                       (index - currentSlideIndex) * 100
                     }%)`,
-                    transition: "transform 1s ease-in-out",
+                    transition: "transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s",
                   }}
                 >
                   <ContentDetails>

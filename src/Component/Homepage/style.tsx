@@ -104,6 +104,14 @@ export const HamburgerMenu = styled.div`
   }
 `;
 
+export const SlideWrappper = styled.div`
+  @media (max-width: 728px) {
+    border: 5px solid blue;
+    height: 30vh;
+    overflow: hidden;
+  }
+`;
+
 export const SlideContent = styled.div<PropsArgs>`
   width: 100vw;
   height: 80vh;
@@ -121,15 +129,20 @@ export const SlideContent = styled.div<PropsArgs>`
   background-repeat: repeat;
   position: absolute;
   top: -21px;
-  margin-top: 20px;
+  /* margin-top: -20px; */
   z-index: -1000000;
 
   @media (max-width: 728px) {
+    top: 10px;
+    height: 30vh;
     padding: 2px;
     display: flex;
     align-items: baseline;
     justify-content: center;
     height: 65%;
+    background-position-y: -10px;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 `;
 
@@ -239,6 +252,10 @@ export const ContentDetails = styled.div`
     span {
       font-size: 18px;
       font-weight: 600;
+
+      @media (max-width: 728px) {
+        font-size: 10.5px;
+      }
     }
 
     @media (max-width: 728px) {
