@@ -11,7 +11,6 @@ export const MainWrapper = styled.div`
 
   @media (max-width: 728px) {
     height: 35vh;
-    border: 1px solid red;
   }
 `;
 
@@ -59,6 +58,7 @@ export const SearchComp = styled.div`
 
   @media (max-width: 728px) {
     width: 150px;
+    height: 20px;
   }
 `;
 
@@ -133,7 +133,7 @@ export const SlideContent = styled.div<PropsArgs>`
   z-index: -1000000;
 
   @media (max-width: 728px) {
-    top: 10px;
+    top: -20px;
     height: 30vh;
     padding: 2px;
     display: flex;
@@ -150,6 +150,10 @@ export const ContentDetails = styled.div`
   width: 320px;
   height: auto;
   padding: 10px;
+
+  @media (max-width: 728px) {
+    margin-top: 30px;
+  }
 
   h1 {
     color: white;

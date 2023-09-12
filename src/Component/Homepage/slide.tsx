@@ -42,6 +42,7 @@ const Slide = () => {
   const [featuredMovies, setFeaturedMovies] = useState<Movie[]>([]);
   const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const movie_id = useState([]);
 
   const slide = [
     {
@@ -77,6 +78,56 @@ const Slide = () => {
         setIsLoading(false);
       });
   }, []);
+
+  const fetchIMDbID = async (movieID: number) => {
+    try {
+      const apiUrl = `https://api.themoviedb.org/3/movie/${movieID}/external_ids`;
+
+      const response = await axios.get(apiUrl, {
+        headers: {
+          Accept: "application/json",
+          Authorization: authToken,
+        },
+      });
+
+      if (response.status === 200) {
+        return response.data.imdb_id;
+      } else {
+        console.error(
+          "Error fetching IMDb ID:",
+          response.status,
+          response.statusText
+        );
+        return null;
+      }
+    } catch (error) {
+      console.error("Error fetching IMDb ID:", error);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    const fetchIMDbIDs = async () => {
+      const movieIDs = featuredMovies.map((movie) => movie.id);
+      const imdbIDs = await Promise.all(
+        movieIDs.map((movieID) => fetchIMDbID(movieID))
+      );
+
+      setFeaturedMovies((prevMovies) =>
+        prevMovies.map((movie, index) => ({
+          ...movie,
+          imdb_id: imdbIDs[index] || "",
+        }))
+      );
+
+     
+      console.log("IMDb IDs for featured movies:", imdbIDs);
+    };
+
+    if (!isLoading) {
+      fetchIMDbIDs();
+    }
+  }, [featuredMovies, isLoading]);
 
   useEffect(() => {
     const apiUrls = `https://api.themoviedb.org/3/movie/top_rated`;
@@ -119,7 +170,7 @@ const Slide = () => {
             <HamburgerMenu>
               <p>Sign in</p>
               <div>
-                <AiOutlineMenu size={30} color="white" />
+                <AiOutlineMenu size={20} color="white" />
               </div>
             </HamburgerMenu>
           </HeaderComp>
@@ -133,7 +184,8 @@ const Slide = () => {
                     transform: `translateX(${
                       (index - currentSlideIndex) * 100
                     }%)`,
-                    transition: "transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s",
+                    transition:
+                      "transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s",
                   }}
                 >
                   <ContentDetails>
