@@ -52,9 +52,30 @@ export const Logo = styled.div`
 
 export const SearchComp = styled.div`
   width: 500px;
-  height: 40px;
-  border: 2px solid white;
+  height: 35px;
+  border: 2px solid blue;
   border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  input {
+    width: 80%;
+    height: 10px;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: yellow;
+  }
+
+  div{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   @media (max-width: 728px) {
     width: 150px;
@@ -287,7 +308,6 @@ export const MovieArea = styled.div`
 export const Featuredheader = styled.div`
   width: auto;
   height: 5vh;
-  border: 1px solid black;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -321,14 +341,13 @@ export const FeaturedNsearcMovei = styled.div`
   padding: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-wrap: wrap;
 `;
 
 export const MovieCard = styled.div`
   width: 270px;
   height: 500px;
-  border: 1px solid black;
   margin: 30px;
 
   @media (max-width: 728px) {

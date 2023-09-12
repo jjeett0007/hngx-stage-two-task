@@ -23,6 +23,7 @@ import {
   AiOutlineMenu,
   AiOutlineRight,
 } from "react-icons/ai";
+import { BsSearch } from "react-icons/bs";
 import axios from "axios";
 
 interface Movie {
@@ -41,19 +42,10 @@ const Slide = () => {
   const [searchResult, setSearchResult] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [featuredMovies, setFeaturedMovies] = useState<Movie[]>([]);
+  const [searchedMovies, setsearchedMovies] = useState<Movie[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const movie_id = useState([]);
-
-  const slide = [
-    {
-      id: 1,
-      title: "John Wick",
-      rating: 8,
-      describe:
-        "John Wick is on the run after killing a member of the international assassins guild and with a 14million price tag on his head, he is the target of the hit men and women everywhere.",
-    },
-  ];
 
   const apiKey = "3a62d04255c878db1daaa9aa1c669ebe";
   const authToken =
@@ -80,9 +72,47 @@ const Slide = () => {
       });
   }, []);
 
+  const handleSearch = () => {
+    if (searchQuery.trim() === "") {
+      return;
+    }
+
+    setFeatured(false);
+    setSearchResult(true);
+    setIsLoading(true);
+
+    const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${searchQuery}`;
+
+    axios
+      .get(searchUrl, {
+        headers: {
+          Accept: "application/json",
+          Authorization: authToken,
+        },
+      })
+      .then((response) => {
+        setsearchedMovies(response.data.results);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log("error fetching movies", error);
+        setIsLoading(false);
+      });
+  };
+
   const fetchIMDbID = async (movieID: number) => {
     try {
       const apiUrl = `https://api.themoviedb.org/3/movie/${movieID}/external_ids`;
+      const apiUrls = `https://api.themoviedb.org/3/movie/${movieID}/videos`;
+
+      const youresponse = await axios.get(apiUrls, {
+        headers: {
+          Accept: "application/json",
+          Authorization: authToken,
+        },
+      });
+
+      console.log("video response", youresponse);
 
       const response = await axios.get(apiUrl, {
         headers: {
@@ -90,6 +120,8 @@ const Slide = () => {
           Authorization: authToken,
         },
       });
+
+      // console.log("Response from IMDb ID endpoint:", response);
 
       if (response.status === 200) {
         return response.data.imdb_id;
@@ -121,7 +153,13 @@ const Slide = () => {
         }))
       );
 
-     
+      setsearchedMovies((prevMovies) => 
+        prevMovies.map((movie, index) => ({
+          ...movie,
+          imdb_id: imdbIDs[index] || "",
+        }))
+      );
+
       console.log("IMDb IDs for featured movies:", imdbIDs);
     };
 
@@ -150,16 +188,19 @@ const Slide = () => {
   }, []);
 
   useEffect(() => {
-    // Set up a timer to advance the slide every 6 seconds
     const slideTimer = setInterval(() => {
       setCurrentSlideIndex(
         (prevIndex) => (prevIndex + 1) % topRatedMovies.length
       );
     }, 6000);
 
-    // Clear the timer when the component unmounts
     return () => clearInterval(slideTimer);
   }, [currentSlideIndex, topRatedMovies]);
+
+  const handleClose = () => {
+    setFeatured(true);
+    setSearchResult(false);
+  }
 
   return (
     <>
@@ -167,7 +208,22 @@ const Slide = () => {
         <SlideWrapper>
           <HeaderComp>
             <Logo></Logo>
-            <SearchComp></SearchComp>
+            <SearchComp>
+              <input
+                type="text"
+                placeholder="search for your favorite movies here"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <div>
+                <BsSearch
+                  onClick={handleSearch}
+                  color="white"
+                  size={25}
+                  strokeWidth={1}
+                />
+              </div>
+            </SearchComp>
             <HamburgerMenu>
               <p>Sign in</p>
               <div>
@@ -280,8 +336,51 @@ const Slide = () => {
             <MovieArea>
               <Featuredheader>
                 <h3>Searched Movie</h3>
-                <div>see more</div>
+                <div onClick={handleClose}>close search</div>
               </Featuredheader>
+              <FeaturedNsearcMovei>
+                <>
+                  {isLoading ? (
+                    <>
+                      <p>Searching...</p>
+                    </>
+                  ) : (
+                    <>
+                      {searchedMovies.map((index) => (
+                        <MovieCard id={index.imdb_id} key={index.imdb_id}>
+                          <MovieBanner
+                            customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
+                          >
+                            <div>
+                              <div></div>
+                              <div>
+                                <AiFillHeart size={20} color="white" />
+                              </div>
+                            </div>
+                          </MovieBanner>
+                          <MovieDetails>
+                            <h5>USA, {index.release_date}</h5>
+                            <h4>{index.title}</h4>
+
+                            <div>
+                              <div>
+                                <div></div>
+                                <span>{index.vote_average}/10</span>
+                              </div>
+                              <div>
+                                <div></div>
+                                <span>97%</span>
+                              </div>
+                            </div>
+
+                            <p>Action, Adventure, Horror</p>
+                          </MovieDetails>
+                        </MovieCard>
+                      ))}
+                    </>
+                  )}
+                </>
+              </FeaturedNsearcMovei>
             </MovieArea>
           </>
         )}
