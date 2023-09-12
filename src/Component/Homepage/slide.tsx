@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+// import Skeleton from "@mui/material/Skeleton";
 import {
   ContentDetails,
   Featuredheader,
@@ -341,7 +342,20 @@ const Slide = () => {
                 <>
                   {isLoading ? (
                     <>
-                      <p>Searching...</p>
+                      <MovieCard>
+                        <MovieBanner customBg="">
+                          {/* <Skeleton
+                            variant="rectangular"
+                            width={210}
+                            height={118}
+                          /> */}
+                        </MovieBanner>
+                        <MovieDetails>
+                          {/* <Skeleton />
+                          <Skeleton animation="wave" />
+                          <Skeleton animation={false} /> */}
+                        </MovieDetails>
+                      </MovieCard>
                     </>
                   ) : (
                     <>
