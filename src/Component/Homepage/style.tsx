@@ -360,7 +360,7 @@ export const MovieCard = styled.div`
 
 export const MovieBanner = styled.div<PropsArgs>`
   width: auto;
-  height: 452px;
+  height: 370px;
   background-image: ${({ customBg }) =>
     customBg
       ? `url(${customBg})`
