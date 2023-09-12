@@ -47,7 +47,6 @@ const Slide = () => {
   const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
-  const apiKey = "3a62d04255c878db1daaa9aa1c669ebe";
   const authToken =
     "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTYyZDA0MjU1Yzg3OGRiMWRhYWE5YWExYzY2OWViZSIsInN1YiI6IjY0Yjk1MGUwNmFhOGUwMDBiMGIwYTEyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j5GXCaGvAlGNzLwvf2ROT_p8rUZdcm5v7XEDjZu8NlE";
 
@@ -153,7 +152,7 @@ const Slide = () => {
         }))
       );
 
-      setsearchedMovies((prevMovies) => 
+      setsearchedMovies((prevMovies) =>
         prevMovies.map((movie, index) => ({
           ...movie,
           imdb_id: imdbIDs[index] || "",
@@ -200,7 +199,7 @@ const Slide = () => {
   const handleClose = () => {
     setFeatured(true);
     setSearchResult(false);
-  }
+  };
 
   return (
     <>
@@ -346,7 +345,44 @@ const Slide = () => {
                     </>
                   ) : (
                     <>
-                      {searchedMovies.map((index) => (
+                      {searchedMovies.length === 0 ? (
+                        <p>No result</p>
+                      ) : (
+                        <>
+                          {searchedMovies.map((index) => (
+                            <MovieCard id={index.imdb_id} key={index.imdb_id}>
+                              <MovieBanner
+                                customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
+                              >
+                                <div>
+                                  <div></div>
+                                  <div>
+                                    <AiFillHeart size={20} color="white" />
+                                  </div>
+                                </div>
+                              </MovieBanner>
+                              <MovieDetails>
+                                <h5>{index.release_date}</h5>
+                                <h4>{index.title}</h4>
+
+                                <div>
+                                  <div>
+                                    <div></div>
+                                    <span>{index.vote_average}/10</span>
+                                  </div>
+                                  <div>
+                                    <div></div>
+                                    <span>97%</span>
+                                  </div>
+                                </div>
+
+                                <p>Action, Adventure, Horror</p>
+                              </MovieDetails>
+                            </MovieCard>
+                          ))}
+                        </>
+                      )}
+                      {/* {searchedMovies.map((index) => (
                         <MovieCard id={index.imdb_id} key={index.imdb_id}>
                           <MovieBanner
                             customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
@@ -359,7 +395,7 @@ const Slide = () => {
                             </div>
                           </MovieBanner>
                           <MovieDetails>
-                            <h5>USA, {index.release_date}</h5>
+                            <h5>{index.release_date}</h5>
                             <h4>{index.title}</h4>
 
                             <div>
@@ -376,7 +412,7 @@ const Slide = () => {
                             <p>Action, Adventure, Horror</p>
                           </MovieDetails>
                         </MovieCard>
-                      ))}
+                      ))} */}
                     </>
                   )}
                 </>

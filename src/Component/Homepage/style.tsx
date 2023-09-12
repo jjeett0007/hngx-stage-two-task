@@ -75,6 +75,7 @@ export const SearchComp = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
 
   @media (max-width: 728px) {
@@ -325,6 +326,7 @@ export const Featuredheader = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     p {
       font-size: 16px;
@@ -416,7 +418,7 @@ export const MovieDetails = styled.div`
   h4,
   p {
     margin-top: -6px;
-    line-height: 13px;
+    line-height: 17px;
   }
 
   h5,
