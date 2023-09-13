@@ -73,7 +73,6 @@ export const YoutubePlay = styled.div`
 export const MovieInfo = styled.div`
   width: 95%;
   height: 350px;
-  border: 1px solid blue;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -82,7 +81,6 @@ export const MovieInfo = styled.div`
 export const MovieInfoTitle = styled.div`
   width: 62%;
   height: 100%;
-  border: 1px solid purple;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -132,10 +130,9 @@ export const TitleHeader = styled.div`
 export const TitleDescription = styled.div`
   width: 100%;
   height: 90px;
-  border: 1px solid red;
 
   p {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
   }
 `;
@@ -143,7 +140,6 @@ export const TitleDescription = styled.div`
 export const TitleActor = styled.div`
   width: 100%;
   height: 120px;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -151,7 +147,6 @@ export const TitleActor = styled.div`
   div {
     width: 100%;
     height: 30%;
-    border: 1px solid black;
     display: flex;
     align-items: center;
 
