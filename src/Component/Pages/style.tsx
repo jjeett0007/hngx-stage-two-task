@@ -101,30 +101,31 @@ export const MovieInfoTitleTwo = styled.div`
 export const TitleHeader = styled.div`
   width: 100%;
   height: 35px;
-  border: 1px solid red;
   display: flex;
   align-items: center;
   gap: 10px;
 
-
   div {
     width: 60%;
     height: 100%;
-    border: 1px solid green;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    p{
-        font-size: 18px;
-        font-weight: 700;
+    p {
+      font-size: 18px;
+      font-weight: 700;
     }
   }
 
   span {
     width: 80px;
     height: 100%;
-    border: 1px solid black;
+    border: 1px solid #f8e7eb;
+    border-radius: 20px;
+    color: #b91c1c;
+    font-family: Poppins;
+    font-size: 15px;
   }
 `;
 
@@ -132,18 +133,54 @@ export const TitleDescription = styled.div`
   width: 100%;
   height: 90px;
   border: 1px solid red;
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+  }
 `;
 
 export const TitleActor = styled.div`
   width: 100%;
   height: 120px;
   border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  div {
+    width: 100%;
+    height: 30%;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+
+    p {
+      color: black;
+      font-size: 18px;
+      font-weight: 600;
+      margin-right: 10px;
+    }
+
+    span {
+      color: #b91c1c;
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
 `;
 
 export const TitleRated = styled.div`
   width: 100%;
   height: 40px;
   border: 1px solid red;
+
+  div {
+    width: 35%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: #b91c1c;
+  }
 `;
 
 export const RatedShowTime = styled.div`

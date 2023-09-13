@@ -25,18 +25,34 @@ const MoviePlay = () => {
             <MovieInfoTitle>
               <TitleHeader>
                 <div>
-                    <p>Top Gun Maverick</p>
-                    <BsFillCircleFill size={7} />
-                    <p>2022</p>
-                    <BsFillCircleFill size={7} />
-                    <p>PG-13</p>
-                    <BsFillCircleFill size={7} />
-                    <p>2h 10m</p>
+                  <p>Top Gun Maverick</p>
+                  <BsFillCircleFill size={7} />
+                  <p>2022</p>
+                  <BsFillCircleFill size={7} />
+                  <p>PG-13</p>
+                  <BsFillCircleFill size={7} />
+                  <p>2h 10m</p>
                 </div>
+                <span></span>
                 <span></span>
               </TitleHeader>
               <TitleDescription></TitleDescription>
-              <TitleActor></TitleActor>
+              <TitleActor>
+                <div>
+                  <p>Director: </p>
+                  <span>Jet</span>
+                </div>
+
+                <div>
+                  <p>Wriiters: </p>
+                  <span>Jet</span>
+                </div>
+
+                <div>
+                  <p>Star: </p>
+                  <span>Jet</span>
+                </div>
+              </TitleActor>
               <TitleRated></TitleRated>
             </MovieInfoTitle>
             <MovieInfoTitleTwo>
