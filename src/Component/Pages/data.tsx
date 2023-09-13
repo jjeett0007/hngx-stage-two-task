@@ -13,6 +13,7 @@ import {
   RatedShowTime,
   OtherMovies,
 } from "./style";
+import { BsFillCircleFill } from "react-icons/bs";
 
 const MoviePlay = () => {
   return (
@@ -22,14 +23,25 @@ const MoviePlay = () => {
           <YoutubePlay></YoutubePlay>
           <MovieInfo>
             <MovieInfoTitle>
-                <TitleHeader></TitleHeader>
-                <TitleDescription></TitleDescription>
-                <TitleActor></TitleActor>
-                <TitleRated></TitleRated>
+              <TitleHeader>
+                <div>
+                    <p>Top Gun Maverick</p>
+                    <BsFillCircleFill size={7} />
+                    <p>2022</p>
+                    <BsFillCircleFill size={7} />
+                    <p>PG-13</p>
+                    <BsFillCircleFill size={7} />
+                    <p>2h 10m</p>
+                </div>
+                <span></span>
+              </TitleHeader>
+              <TitleDescription></TitleDescription>
+              <TitleActor></TitleActor>
+              <TitleRated></TitleRated>
             </MovieInfoTitle>
             <MovieInfoTitleTwo>
-                <RatedShowTime></RatedShowTime>
-                <OtherMovies></OtherMovies>
+              <RatedShowTime></RatedShowTime>
+              <OtherMovies></OtherMovies>
             </MovieInfoTitleTwo>
           </MovieInfo>
         </ScrollWrapper>

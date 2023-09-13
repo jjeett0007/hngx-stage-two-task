@@ -102,6 +102,30 @@ export const TitleHeader = styled.div`
   width: 100%;
   height: 35px;
   border: 1px solid red;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+
+  div {
+    width: 60%;
+    height: 100%;
+    border: 1px solid green;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p{
+        font-size: 18px;
+        font-weight: 700;
+    }
+  }
+
+  span {
+    width: 80px;
+    height: 100%;
+    border: 1px solid black;
+  }
 `;
 
 export const TitleDescription = styled.div`
