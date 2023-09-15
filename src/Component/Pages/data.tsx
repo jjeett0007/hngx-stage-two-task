@@ -30,6 +30,7 @@ interface Movie {
 
 const MoviePlay = () => {
   const [movieInfo, setMovieInfo] = useState<Movie[]>([]);
+  const [movieId, setMovieId] = useState([]);
   const { imdbId } = useParams();
   const authToken =
     "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTYyZDA0MjU1Yzg3OGRiMWRhYWE5YWExYzY2OWViZSIsInN1YiI6IjY0Yjk1MGUwNmFhOGUwMDBiMGIwYTEyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j5GXCaGvAlGNzLwvf2ROT_p8rUZdcm5v7XEDjZu8NlE";
@@ -46,7 +47,9 @@ const MoviePlay = () => {
       })
       .then((response) => {
         setMovieInfo(response.data.results[0]);
-        console.log(response.data.results);
+        setMovieId(response.data.results.id)
+        // console.log(response.data.results);
+        console.log(response.data.results.id);
       })
       .catch((error) => {
         console.log("error fetching data", error);
@@ -74,7 +77,7 @@ const MoviePlay = () => {
                   <BsFillCircleFill size={7} />
                   <p>2022</p>
                   <BsFillCircleFill size={7} />
-                  <p>PG-13</p>
+                  <p>PG-133</p>
                   <BsFillCircleFill size={7} />
                   <p>2h 10m</p>
                 </div>
