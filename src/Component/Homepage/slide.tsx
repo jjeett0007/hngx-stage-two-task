@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import {
@@ -50,12 +51,15 @@ const Slide = () => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [display, showDisplay] = useState(false);
 
-  const authToken =
-    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTYyZDA0MjU1Yzg3OGRiMWRhYWE5YWExYzY2OWViZSIsInN1YiI6IjY0Yjk1MGUwNmFhOGUwMDBiMGIwYTEyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j5GXCaGvAlGNzLwvf2ROT_p8rUZdcm5v7XEDjZu8NlE";
+  // const authToken =
+  //   "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTYyZDA0MjU1Yzg3OGRiMWRhYWE5YWExYzY2OWViZSIsInN1YiI6IjY0Yjk1MGUwNmFhOGUwMDBiMGIwYTEyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j5GXCaGvAlGNzLwvf2ROT_p8rUZdcm5v7XEDjZu8NlE";
+
+  const apiKey = process.env.REACT_APP_API_KEY;
+  const authToken = `Bearer ${apiKey}`;
 
   useEffect(() => {
     setTimeout(() => {
-      const apiUrl = `https://api.themoviedb.org/3/movie/popular`;
+      const apiUrl = `https://api.themoviedb.org/3/movie/top_rated`;
 
       axios
         .get(apiUrl, {
@@ -65,7 +69,8 @@ const Slide = () => {
           },
         })
         .then((response) => {
-          setFeaturedMovies(response.data.results);
+          const data = response.data.results.slice(0, 10);
+          setFeaturedMovies(data);
           setIsLoading(false);
           console.log(response.data.results);
         })
@@ -117,16 +122,6 @@ const Slide = () => {
   const fetchIMDbID = async (movieID: number) => {
     try {
       const apiUrl = `https://api.themoviedb.org/3/movie/${movieID}/external_ids`;
-      const apiUrls = `https://api.themoviedb.org/3/movie/${movieID}/videos`;
-
-      const youresponse = await axios.get(apiUrls, {
-        headers: {
-          Accept: "application/json",
-          Authorization: authToken,
-        },
-      });
-
-      console.log("video response", youresponse);
 
       const response = await axios.get(apiUrl, {
         headers: {
@@ -183,7 +178,7 @@ const Slide = () => {
   }, [featuredMovies, isLoading]);
 
   useEffect(() => {
-    const apiUrls = `https://api.themoviedb.org/3/movie/top_rated`;
+    const apiUrls = `https://api.themoviedb.org/3/movie/popular`;
 
     axios
       .get(apiUrls, {
@@ -193,7 +188,7 @@ const Slide = () => {
         },
       })
       .then((response) => {
-        const data = response.data.results.slice(0, 20);
+        const data = response.data.results.slice(0, 10);
         setTopRatedMovies(data);
       })
       .catch((error) => {
@@ -338,8 +333,9 @@ const Slide = () => {
                   ) : (
                     <>
                       {featuredMovies.map((index) => (
-                        <MovieCard id={index.imdb_id} key={index.imdb_id}>
+                        <MovieCard data-testid="movie-card" key={index.id}>
                           <MovieBanner
+                            data-testid="movie-poster"
                             customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
                           >
                             <div>
@@ -350,8 +346,16 @@ const Slide = () => {
                             </div>
                           </MovieBanner>
                           <MovieDetails>
-                            <h5>USA, {index.release_date}</h5>
-                            <h4>{index.title}</h4>
+                            <h5 data-testid="movie-release-date">
+                              USA, {index.release_date}
+                            </h5>
+                            <h4>
+                              <Link to={`/movie/${index.id}`}>
+                                <p data-testid="movie-release-date">
+                                  {index.title}
+                                </p>
+                              </Link>
+                            </h4>
 
                             <div>
                               <div>
@@ -450,7 +454,13 @@ const Slide = () => {
                                   </MovieBanner>
                                   <MovieDetails>
                                     <h5>{index.release_date}</h5>
-                                    <h4>{index.title}</h4>
+                                    <h4>
+                                      <Link to={`/movie/${index.id}`}>
+                                        <p data-testid="movie-release-date">
+                                          {index.title}
+                                        </p>
+                                      </Link>
+                                    </h4>
 
                                     <div>
                                       <div>
