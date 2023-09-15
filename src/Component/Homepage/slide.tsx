@@ -347,7 +347,7 @@ const Slide = () => {
                           </MovieBanner>
                           <MovieDetails>
                             <h5 data-testid="movie-release-date">
-                              USA, {index.release_date}
+                              {index.release_date}
                             </h5>
                             <h4>
                               <Link to={`/movie/${index.id}`}>
@@ -360,7 +360,8 @@ const Slide = () => {
                             <div>
                               <div>
                                 <div></div>
-                                <span>{index.vote_average}/10</span>
+                                <span>{index.vote_average}</span>
+                                <span>/10</span>
                               </div>
                               <div>
                                 <div></div>

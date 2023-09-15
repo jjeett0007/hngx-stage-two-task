@@ -343,12 +343,12 @@ export const FeaturedNsearcMovei = styled.div`
   padding: 10px;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
+  justify-content: center;
   flex-wrap: wrap;
 `;
 
 export const MovieCard = styled.div`
-  width: 270px;
+  width: 210px;
   height: 500px;
   margin: 30px;
 
