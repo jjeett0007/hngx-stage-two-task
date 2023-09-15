@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   MovieWrapper,
   YoutubePlay,
@@ -14,8 +14,45 @@ import {
   OtherMovies,
 } from "./style";
 import { BsFillCircleFill } from "react-icons/bs";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+interface Movie {
+  imdb_id: string;
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+  vote_average: number;
+  overview: string;
+  backdrop_path: string;
+}
 
 const MoviePlay = () => {
+  const [movieInfo, setMovieInfo] = useState<Movie[]>([]);
+  const { imdbId } = useParams();
+  const authToken =
+    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTYyZDA0MjU1Yzg3OGRiMWRhYWE5YWExYzY2OWViZSIsInN1YiI6IjY0Yjk1MGUwNmFhOGUwMDBiMGIwYTEyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j5GXCaGvAlGNzLwvf2ROT_p8rUZdcm5v7XEDjZu8NlE";
+
+  useEffect(() => {
+    const apiUrl = `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id`;
+
+    axios
+      .get(apiUrl, {
+        headers: {
+          Accept: "application/json",
+          Authorization: authToken,
+        },
+      })
+      .then((response) => {
+        setMovieInfo(response.data.results[0]);
+        console.log(response.data.results);
+      })
+      .catch((error) => {
+        console.log("error fetching data", error);
+      });
+  }, [imdbId]);
+
   return (
     <>
       <MovieWrapper>
@@ -25,7 +62,15 @@ const MoviePlay = () => {
             <MovieInfoTitle>
               <TitleHeader>
                 <div>
-                  <p>Top Gun Maverick</p>
+                  {movieInfo.length > 0 ? (
+                    <div>
+                      {movieInfo.map((movie) => (
+                        <p key={movie.id}>{movie.title}</p>
+                      ))}
+                    </div>
+                  ) : (
+                    <p>Loading...</p>
+                  )}
                   <BsFillCircleFill size={7} />
                   <p>2022</p>
                   <BsFillCircleFill size={7} />
@@ -66,4 +111,4 @@ const MoviePlay = () => {
   );
 };
 
-export default MoviePlay;
+// export default MoviePlay;

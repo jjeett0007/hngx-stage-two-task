@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import {
@@ -119,14 +120,13 @@ const Slide = () => {
       const apiUrl = `https://api.themoviedb.org/3/movie/${movieID}/external_ids`;
       const apiUrls = `https://api.themoviedb.org/3/movie/${movieID}/videos`;
 
-      const youresponse = await axios.get(apiUrls, {
-        headers: {
-          Accept: "application/json",
-          Authorization: authToken,
-        },
-      });
+      // const youresponse = await axios.get(apiUrls, {
+      //   headers: {
+      //     Accept: "application/json",
+      //     Authorization: authToken,
+      //   },
+      // });
 
-      console.log("video response", youresponse);
 
       const response = await axios.get(apiUrl, {
         headers: {
@@ -351,7 +351,9 @@ const Slide = () => {
                           </MovieBanner>
                           <MovieDetails>
                             <h5>USA, {index.release_date}</h5>
-                            <h4>{index.title}</h4>
+                            <h4>
+                              <Link to={`/movie/${index.imdb_id}`}>{index.title}</Link>
+                            </h4>
 
                             <div>
                               <div>
