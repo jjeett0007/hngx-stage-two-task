@@ -348,9 +348,10 @@ export const FeaturedNsearcMovei = styled.div`
 `;
 
 export const MovieCard = styled.div`
-  width: 210px;
+  width: 250px;
   height: 500px;
-  margin: 30px;
+  margin: 10px;
+  margin-bottom: 50px;
 
   @media (max-width: 728px) {
     width: 300px;
@@ -369,16 +370,19 @@ export const MovieBanner = styled.div<PropsArgs>`
   background-size: cover;
   background-repeat: no-repeat;
 
-  /* img {
-    position: absolute;
-    width: 18%;
-    height: 100%;
-    z-index: -1;
-  } */
+  img {
+    width: 100%;
+    height: 99%;
+    border-radius: 20px;
+    /* z-index: -1; */
+  }
 
   div {
+    position: absolute;
+    margin-top: 1px;
+    top: 10;
     margin-top: 0px;
-    width: 92%;
+    width: auto;
     height: 40px;
     padding-left: 10px;
     padding-right: 10px;
@@ -407,18 +411,19 @@ export const MovieBanner = styled.div<PropsArgs>`
 export const MovieDetails = styled.div`
   width: auto;
   height: auto;
-  padding: 10px;
+  padding: 5px;
   padding-bottom: 0px;
   display: flex;
   flex-direction: column;
   align-items: baseline;
   justify-content: center;
+  border: 1px solid black;
 
   h5,
   h4,
   p {
     margin-top: -6px;
-    line-height: 17px;
+    line-height: 14px;
   }
 
   h5,
