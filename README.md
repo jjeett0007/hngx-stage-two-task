@@ -1,4 +1,4 @@
-# Your Project Name
+# hngx-stage-two-task Movie Box
 
 ## Project Dependencies
 
@@ -10,10 +10,10 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/your-project.git
+git clone https://github.com/jjeett0007/hngx-stage-two-task.git
 
 # Change to the project directory
-cd your-project
+cd hngx-stage-two-task
 
 # Install dependencies
 npm install
