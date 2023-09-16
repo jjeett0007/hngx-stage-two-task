@@ -71,7 +71,7 @@ const Slide = () => {
           const data = response.data.results.slice(0, 10);
           setFeaturedMovies(data);
           setIsLoading(false);
-          console.log(response.data.results);
+          // console.log(response.data.results);
         })
         .catch((error) => {
           console.log("error fetching movies", error);
@@ -147,70 +147,6 @@ const Slide = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const fetchIMDbIDs = async () => {
-  //     const movieIDs = featuredMovies.map((movie) => movie.id);
-  //     const imdbIDs = await Promise.all(
-  //       movieIDs.map((movieID) => fetchIMDbID(movieID))
-  //     );
-
-  //     setFeaturedMovies((prevMovies) =>
-  //       prevMovies.map((movie, index) => ({
-  //         ...movie,
-  //         imdb_id: imdbIDs[index] || "",
-  //       }))
-  //     );
-
-  //     setsearchedMovies((prevMovies) =>
-  //       prevMovies.map((movie, index) => ({
-  //         ...movie,
-  //         imdb_id: imdbIDs[index] || "",
-  //       }))
-  //     );
-
-  //     console.log("IMDb IDs for featured movies:", imdbIDs);
-  //   };
-
-  //   if (!isLoading) {
-  //     fetchIMDbIDs();
-  //   }
-  // }, [featuredMovies, isLoading]);
-
-  // ... Other code ...
-
-  // useEffect(() => {
-  //   const fetchIMDbIDs = async () => {
-  //     if (featuredMovies.length === 0) {
-  //       return;
-  //     }
-
-  //     const movieIDs = featuredMovies.map((movie) => movie.id);
-  //     const imdbIDs = await Promise.all(
-  //       movieIDs.map((movieID) => fetchIMDbID(movieID))
-  //     );
-
-  //     setFeaturedMovies((prevMovies) =>
-  //       prevMovies.map((movie, index) => ({
-  //         ...movie,
-  //         imdb_id: imdbIDs[index] || "",
-  //       }))
-  //     );
-
-  //     setsearchedMovies((prevMovies) =>
-  //       prevMovies.map((movie, index) => ({
-  //         ...movie,
-  //         imdb_id: imdbIDs[index] || "",
-  //       }))
-  //     );
-
-  //     console.log("IMDb IDs for featured movies:", imdbIDs);
-  //   };
-
-  //   if (!isLoading) {
-  //     fetchIMDbIDs();
-  //   }
-  // }, [featuredMovies]);
-
   useEffect(() => {
     if (!isLoading && !hasFetchedIMDbIDs && !fetchIMDbIDsRef.current) {
       fetchIMDbIDsRef.current = true;
@@ -235,7 +171,7 @@ const Slide = () => {
           }))
         );
 
-        console.log("IMDb IDs for featured movies:", imdbIDs);
+        // console.log("IMDb IDs for featured movies:", imdbIDs);
       };
 
       fetchIMDbIDs();
