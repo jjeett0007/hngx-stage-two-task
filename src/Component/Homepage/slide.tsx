@@ -484,38 +484,6 @@ const Slide = () => {
                           )}
                         </>
                       )}
-
-                      {/* {searchedMovies.map((index) => (
-                        <MovieCard id={index.imdb_id} key={index.imdb_id}>
-                          <MovieBanner
-                            customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
-                          >
-                            <div>
-                              <div></div>
-                              <div>
-                                <AiFillHeart size={20} color="white" />
-                              </div>
-                            </div>
-                          </MovieBanner>
-                          <MovieDetails>
-                            <h5>{index.release_date}</h5>
-                            <h4>{index.title}</h4>
-
-                            <div>
-                              <div>
-                                <div></div>
-                                <span>{index.vote_average}/10</span>
-                              </div>
-                              <div>
-                                <div></div>
-                                <span>97%</span>
-                              </div>
-                            </div>
-
-                            <p>Action, Adventure, Horror</p>
-                          </MovieDetails>
-                        </MovieCard>
-                      ))} */}
                     </>
                   )}
                 </>
