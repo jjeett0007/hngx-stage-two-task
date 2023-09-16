@@ -336,7 +336,7 @@ const Slide = () => {
                     <>
                       {featuredMovies.map((index) => (
                         <MovieCard data-testid="movie-card" key={index.id}>
-                          <MovieBanner data-testid="movie-poster" customBg="">
+                          <MovieBanner customBg="">
                             <div>
                               <div></div>
                               <div>
@@ -355,7 +355,7 @@ const Slide = () => {
                             </h5>
                             <h4>
                               <Link to={`/movie/${index.id}`}>
-                                <p data-testid="movie-release-date">
+                                <p data-testid="movie-title">
                                   {index.title}
                                 </p>
                               </Link>
