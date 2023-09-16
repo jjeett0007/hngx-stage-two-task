@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -50,6 +50,8 @@ const Slide = () => {
   const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [display, showDisplay] = useState(false);
+  const [hasFetchedIMDbIDs, setHasFetchedIMDbIDs] = useState(false);
+  const fetchIMDbIDsRef = useRef(false);
 
   const apiKey = process.env.REACT_APP_API_KEY;
   const authToken = `Bearer ${apiKey}`;
@@ -176,38 +178,70 @@ const Slide = () => {
 
   // ... Other code ...
 
+  // useEffect(() => {
+  //   const fetchIMDbIDs = async () => {
+  //     if (featuredMovies.length === 0) {
+  //       return;
+  //     }
+
+  //     const movieIDs = featuredMovies.map((movie) => movie.id);
+  //     const imdbIDs = await Promise.all(
+  //       movieIDs.map((movieID) => fetchIMDbID(movieID))
+  //     );
+
+  //     setFeaturedMovies((prevMovies) =>
+  //       prevMovies.map((movie, index) => ({
+  //         ...movie,
+  //         imdb_id: imdbIDs[index] || "",
+  //       }))
+  //     );
+
+  //     setsearchedMovies((prevMovies) =>
+  //       prevMovies.map((movie, index) => ({
+  //         ...movie,
+  //         imdb_id: imdbIDs[index] || "",
+  //       }))
+  //     );
+
+  //     console.log("IMDb IDs for featured movies:", imdbIDs);
+  //   };
+
+  //   if (!isLoading) {
+  //     fetchIMDbIDs();
+  //   }
+  // }, [featuredMovies]);
+
   useEffect(() => {
-    const fetchIMDbIDs = async () => {
-      if (featuredMovies.length === 0) {
-        return; 
-      }
+    if (!isLoading && !hasFetchedIMDbIDs && !fetchIMDbIDsRef.current) {
+      fetchIMDbIDsRef.current = true;
 
-      const movieIDs = featuredMovies.map((movie) => movie.id);
-      const imdbIDs = await Promise.all(
-        movieIDs.map((movieID) => fetchIMDbID(movieID))
-      );
+      const fetchIMDbIDs = async () => {
+        const movieIDs = featuredMovies.map((movie) => movie.id);
+        const imdbIDs = await Promise.all(
+          movieIDs.map((movieID) => fetchIMDbID(movieID))
+        );
 
-      setFeaturedMovies((prevMovies) =>
-        prevMovies.map((movie, index) => ({
-          ...movie,
-          imdb_id: imdbIDs[index] || "",
-        }))
-      );
+        setFeaturedMovies((prevMovies) =>
+          prevMovies.map((movie, index) => ({
+            ...movie,
+            imdb_id: imdbIDs[index] || "",
+          }))
+        );
 
-      setsearchedMovies((prevMovies) =>
-        prevMovies.map((movie, index) => ({
-          ...movie,
-          imdb_id: imdbIDs[index] || "",
-        }))
-      );
+        setsearchedMovies((prevMovies) =>
+          prevMovies.map((movie, index) => ({
+            ...movie,
+            imdb_id: imdbIDs[index] || "",
+          }))
+        );
 
-      console.log("IMDb IDs for featured movies:", imdbIDs);
-    };
+        console.log("IMDb IDs for featured movies:", imdbIDs);
+      };
 
-    if (!isLoading) {
       fetchIMDbIDs();
+      setHasFetchedIMDbIDs(true);
     }
-  }, [featuredMovies]);
+  }, [featuredMovies, isLoading, hasFetchedIMDbIDs]);
 
   useEffect(() => {
     const apiUrls = `https://api.themoviedb.org/3/movie/popular`;
