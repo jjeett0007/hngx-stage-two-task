@@ -254,7 +254,7 @@ const Page = () => {
                         </>
                       ) : (
                         <>
-                          <span>Loading...</span>
+                          <span>Loading.....</span>
                         </>
                       )}
                     </div>
