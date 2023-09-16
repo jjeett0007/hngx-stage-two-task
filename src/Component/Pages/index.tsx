@@ -264,7 +264,7 @@ const Page = () => {
                       {movieInfo ? (
                         <>
                           <span data-testid="movie-runtime">
-                            {movieInfo.release_date}
+                            {movieInfo.runtime}
                           </span>
                           <span>m</span>
                         </>
