@@ -1,5 +1,5 @@
 import SideNav from "./sidenav";
-import { ScrollBbar, StarRated, Wrappers } from "./style";
+import { MobileTitleDisplay, ScrollBbar, StarRated, Wrappers } from "./style";
 // import MoviePlay from "./data";
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
@@ -230,6 +230,51 @@ const Page = () => {
                     {/* <span></span> */}
                     {/* <span></span> */}
                   </TitleHeader>
+                  <MobileTitleDisplay>
+                    <div>
+                      <p>Title</p>
+                      {movieInfo ? (
+                        <>
+                          <span data-testid="movie-title">
+                            {movieInfo.original_title}
+                          </span>
+                        </>
+                      ) : (
+                        <span>Loading...</span>
+                      )}
+                    </div>
+
+                    <div>
+                      <p>Date</p>
+                      {movieInfo ? (
+                        <>
+                          <span data-testid="movie-release-date">
+                            {movieInfo.release_date}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Loading...</span>
+                        </>
+                      )}
+                    </div>
+
+                    <div>
+                      <p>Time</p>
+                      {movieInfo ? (
+                        <>
+                          <span data-testid="movie-runtime">
+                            {movieInfo.release_date}
+                          </span>
+                          <span>m</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Loading...</span>
+                        </>
+                      )}
+                    </div>
+                  </MobileTitleDisplay>
                   <TitleDescription>
                     {movieInfo ? (
                       <>

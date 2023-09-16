@@ -51,8 +51,6 @@ const Slide = () => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [display, showDisplay] = useState(false);
 
-  // const authToken =
-  //   "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYTYyZDA0MjU1Yzg3OGRiMWRhYWE5YWExYzY2OWViZSIsInN1YiI6IjY0Yjk1MGUwNmFhOGUwMDBiMGIwYTEyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j5GXCaGvAlGNzLwvf2ROT_p8rUZdcm5v7XEDjZu8NlE";
 
   const apiKey = process.env.REACT_APP_API_KEY;
   const authToken = `Bearer ${apiKey}`;

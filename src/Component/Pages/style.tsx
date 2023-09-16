@@ -108,7 +108,6 @@ export const EarnArea = styled.div`
 export const LogOutArea = styled.div`
   width: 100%;
   height: 5vh;
-  border: 1px solid black;
 
   @media (max-width: 728px) {
     display: none;
@@ -226,9 +225,7 @@ export const TitleHeader = styled.div`
   /* border: 2px solid red; */
 
   @media (max-width: 728px) {
-    flex-direction: column;
-    height: auto;
-    /* border: 2px solid yellow; */
+    display: none;
   }
 
   div {
@@ -262,6 +259,36 @@ export const TitleHeader = styled.div`
     @media (max-width: 728px) {
       height: auto;
       padding: 20px;
+    }
+  }
+`;
+
+export const MobileTitleDisplay = styled.div`
+  display: none;
+  @media (max-width: 728px) {
+    display: block;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    div {
+      width: auto;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      p {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      span {
+        font-size: 16px;
+        font-weight: 700;
+        color: red;
+      }
     }
   }
 `;
