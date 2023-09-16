@@ -336,16 +336,18 @@ const Slide = () => {
                     <>
                       {featuredMovies.map((index) => (
                         <MovieCard data-testid="movie-card" key={index.id}>
-                          <MovieBanner
-                            data-testid="movie-poster"
-                            customBg={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
-                          >
+                          <MovieBanner customBg="">
                             <div>
                               <div></div>
                               <div>
                                 <AiFillHeart size={20} color="white" />
                               </div>
                             </div>
+                            <img
+                              data-testid="movie-poster"
+                              src={`https://image.tmdb.org/t/p/original/${index.poster_path}`}
+                              alt="poster"
+                            />
                           </MovieBanner>
                           <MovieDetails>
                             <h5 data-testid="movie-release-date">
@@ -353,7 +355,7 @@ const Slide = () => {
                             </h5>
                             <h4>
                               <Link to={`/movie/${index.id}`}>
-                                <p data-testid="movie-release-date">
+                                <p data-testid="movie-title">
                                   {index.title}
                                 </p>
                               </Link>
