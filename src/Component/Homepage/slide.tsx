@@ -173,7 +173,7 @@ const Slide = () => {
     if (!isLoading) {
       fetchIMDbIDs();
     }
-  }, [featuredMovies, isLoading]);
+  }, []);
 
   useEffect(() => {
     const apiUrls = `https://api.themoviedb.org/3/movie/popular`;
