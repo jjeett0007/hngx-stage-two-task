@@ -417,7 +417,6 @@ export const MovieDetails = styled.div`
   flex-direction: column;
   align-items: baseline;
   justify-content: center;
-  border: 1px solid black;
 
   h5,
   h4,
